@@ -350,6 +350,17 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       KAFKA_TOPIC: env_raw_sensors
 
+  weather-simulator:
+    build:
+      context: ../simulators/weather-simulator
+    container_name: weather-simulator
+    depends_on:
+      - kafka
+      - kafka-init
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_TOPIC: env_weather
+
 volumes:
   postgres-0:
     external: false
